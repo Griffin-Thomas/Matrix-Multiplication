@@ -72,7 +72,7 @@ For each test, the script will generate and multiply two fairly large square mat
 - The performance in GFLOPS (Giga Floating-Point Operations Per Second).
 
 Here’s an example output from the CPU test:
-```bash
+```
 137.44 GFLOP
 Matrix multiplication completed in 0.19 seconds
 734.97 GFLOPS
