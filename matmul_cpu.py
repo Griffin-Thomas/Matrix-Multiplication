@@ -19,7 +19,8 @@ if __name__ == "__main__":
     print(f"{flop / 1e9 :.2f} GFLOP")
     
     # We use time.monotonic() because it is a monotonic clock, meaning it is guaranteed never to go backward
-    # This makes it ideal for measuring elapsed time in a reliable way, unaffected by system clock adjustments (e.g., due to daylight savings or manual changes).
+    # This makes it ideal for measuring elapsed time in a reliable way, 
+    # unaffected by system clock adjustments (e.g. due to daylight savings or manual changes).
     # Start the timer
     st = time.monotonic()
     
