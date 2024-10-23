@@ -53,7 +53,7 @@ Mon Oct 21 21:56:00 2024
 ## Running the Tests
 
 ### CPU Test (NumPy)
-To perform the matrix multiplication on the CPU with $N = 4096$, run:
+To perform the matrix multiplication on the CPU with $N = 4096$, where $N$ represents the size of the two randomly generated $N \times N$ matrices to be multiplied, run:
 ```bash
 python matmul_cpu.py -N 4096
 ```
