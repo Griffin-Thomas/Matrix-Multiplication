@@ -11,13 +11,16 @@ args = parser.parse_args()
 # Size of the NxN square matrix
 N = args.N
 
-# Size of NxN square matrices
-N = 4096
-
 if __name__ == "__main__":
+    # Handle garbage input
+    assert N > 0, "What are you doing?"
+    
     # Generate two random NxN matrices A and B with float32 precision
     A = np.random.randn(N, N).astype(np.float32)
     B = np.random.randn(N, N).astype(np.float32)
+    
+    # To make the input obvious for the test, print the size of the matrices
+    print(f"Two {N}x{N} square matrices have been randomly generated\n")
     
     # Multiplying two NxN matrices involves NxN dot products, where each dot product
     # consists of N multiplications and N - 1 additions, which gives N^2 * N operations

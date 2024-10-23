@@ -12,9 +12,15 @@ args = parser.parse_args()
 N = args.N
 
 if __name__ == "__main__":
+    # Handle garbage input
+    assert N > 0, "What are you doing?"
+    
     # Generate two random NxN matrices A and B with float32 precision
     A = cp.random.randn(N, N).astype(cp.float32)
     B = cp.random.randn(N, N).astype(cp.float32)
+    
+    # To make the input obvious for the test, print the size of the matrices
+    print(f"Two {N}x{N} square matrices have been randomly generated\n")
     
     # Multiplying two NxN matrices involves NxN dot products, where each dot product
     # consists of N multiplications and N - 1 additions, which gives N^2 * N operations

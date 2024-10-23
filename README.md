@@ -1,6 +1,6 @@
 # Matrix Multiplication Performance Test (CPU vs GPU)
 
-This project tests the performance of matrix multiplication in Python using both CPU and GPU. The goal is to measure the performance differences when running large matrix multiplications on a **Ryzen 7 5800X3D CPU** (using NumPy) versus an **NVIDIA RTX 3080 12 GB GPU** (using CuPy or PyTorch).
+This project tests the performance of matrix multiplication in Python using both CPU and GPU. The goal is to measure the performance differences when running large matrix multiplications on a **Ryzen 7 5800X3D CPU** (using NumPy) and compare it with an **NVIDIA RTX 3080 12 GB GPU** (using CuPy or PyTorch).
 
 ## TODO
 - [ ] `matmul_gpu_torch.py`: A Python script that performs matrix multiplication using PyTorch (GPU).
@@ -72,8 +72,10 @@ For each test, the script will generate and multiply two fairly large square mat
 - The time it took to perform the multiplication.
 - The performance in GFLOPS (Giga Floating-Point Operations Per Second).
 
-Here’s an example output from the CPU test with $N = 4096$:
+Here’s an example output from the CPU test:
 ```
+Two 4096x4096 square matrices have been randomly generated
+
 137.44 GFLOP
 Matrix multiplication completed in 0.19 seconds
 734.97 GFLOPS
@@ -87,8 +89,10 @@ Note that this is much **larger** than the CPU test. The reason why I chose $N =
 
 Since this GPU should be much faster than the CPU, I will measure with teraflops instead of gigaflops.
 
-Here’s an example output from the GPU test with $N = 25000$:
+Here’s an example output from the GPU test:
 ```
+Two 25000x25000 square matrices have been randomly generated
+
 31.25 TFLOP
 Matrix multiplication completed in 1.66 seconds
 18.87 TFLOPS
