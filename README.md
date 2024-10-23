@@ -4,6 +4,7 @@ This project tests the performance of matrix multiplication in Python using both
 
 ## TODO
 - [ ] `matmul_gpu_torch.py`: A Python script that performs matrix multiplication using PyTorch (GPU).
+- [ ] `README.md`: Show a fair & direct comparison between the CPU and GPU.
 
 ## Project Structure
 
