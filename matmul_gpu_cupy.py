@@ -1,23 +1,20 @@
-import numpy as np
+import cupy as cp
 import time
 import argparse
 
 # Set up argument parsing
 parser = argparse.ArgumentParser(description="Matrix multiplication performance test.")
-parser.add_argument('-N', type=int, default=4096, help='Size of the matrix (default: 4096)')
+parser.add_argument('-N', type=int, default=25000, help='Size of the matrix (default: 25000)')
 args = parser.parse_args()
 
-# Use the passed value of N or default to 4096
+# Use the passed value of N or default to 25000
 # Size of the NxN square matrix
 N = args.N
 
-# Size of NxN square matrices
-N = 4096
-
 if __name__ == "__main__":
     # Generate two random NxN matrices A and B with float32 precision
-    A = np.random.randn(N, N).astype(np.float32)
-    B = np.random.randn(N, N).astype(np.float32)
+    A = cp.random.randn(N, N).astype(cp.float32)
+    B = cp.random.randn(N, N).astype(cp.float32)
     
     # Multiplying two NxN matrices involves NxN dot products, where each dot product
     # consists of N multiplications and N - 1 additions, which gives N^2 * N operations
@@ -25,8 +22,8 @@ if __name__ == "__main__":
     # Therefore, the total number of floating-point operations (FLOP) is 2 * N^3
     flop = 2 * N * N * N
     
-    # Converting to GFLOP is straightforward
-    print(f"{flop / 1e9 :.2f} GFLOP")
+    # Converting to TFLOP is straightforward
+    print(f"{flop / 1e12 :.2f} TFLOP")
     
     # We use time.monotonic() because it is a monotonic clock, meaning it is guaranteed never to go backward
     # This makes it ideal for measuring elapsed time in a reliable way, 
@@ -36,6 +33,7 @@ if __name__ == "__main__":
     
     # Perform the matrix multiplication
     C = A @ B
+    cp.cuda.Stream.null.synchronize() # Ensure GPU operations finish
     
     # End the timer
     et = time.monotonic()
@@ -44,5 +42,5 @@ if __name__ == "__main__":
     s = et - st
     print(f"Matrix multiplication completed in {s:.2f} seconds")
     
-    # Calculate the performance in GFLOPS (giga floating-point operations per second)
-    print(f"{flop / s * 1e-9 :.2f} GFLOPS")
+    # Calculate the performance in TFLOPS (tera floating-point operations per second)
+    print(f"{flop / s * 1e-12 :.2f} TFLOPS")

@@ -3,7 +3,6 @@
 This project tests the performance of matrix multiplication in Python using both CPU and GPU. The goal is to measure the performance differences when running large matrix multiplications on a **Ryzen 7 5800X3D CPU** (using NumPy) versus an **NVIDIA RTX 3080 12 GB GPU** (using CuPy or PyTorch).
 
 ## TODO
-- [ ] `matmul_gpu_cupy.py`: A Python script that performs matrix multiplication using CuPy (GPU).
 - [ ] `matmul_gpu_torch.py`: A Python script that performs matrix multiplication using PyTorch (GPU).
 
 ## Project Structure
@@ -53,27 +52,44 @@ Mon Oct 21 21:56:00 2024
 ## Running the Tests
 
 ### CPU Test (NumPy)
-To perform the matrix multiplication on the CPU, run:
+To perform the matrix multiplication on the CPU with $N = 4096$, run:
 ```bash
-python matmul_cpu.py
+python matmul_cpu.py -N 4096
 ```
+
+Note that if you don't provide an $N$ value, it will default to 4096 anyway.
 
 ### GPU Test (CuPy)
-To perform the matrix multiplication on the GPU using CuPy, run:
+Similarly, to perform the matrix multiplication on the GPU using CuPy with $N = 25000$, run:
 ```bash
-python matmul_gpu_cupy.py
+python matmul_gpu_cupy.py -N 25000
 ```
 
-## Example Output
+## Example CPU Test (NumPy) Output
 
 For each test, the script will generate and multiply two fairly large square matrices (size **4096 x 4096**) and print the following:
 - The number of floating-point operations (FLOP).
 - The time it took to perform the multiplication.
 - The performance in GFLOPS (Giga Floating-Point Operations Per Second).
 
-Here’s an example output from the CPU test:
+Here’s an example output from the CPU test with $N = 4096$:
 ```
 137.44 GFLOP
 Matrix multiplication completed in 0.19 seconds
 734.97 GFLOPS
+```
+
+## Example GPU Test (CuPy) Output
+
+For each test, the script will generate and multiply two extra large square matrices (size **25000 x 25000**). 
+
+Note that this is much **larger** than the CPU test. The reason why I chose $N = 25000$ instead is because I noticed the VRAM on my RTX 3080 12 GB would go up to **11 GB of utilization**. Therefore, if I went with some $N > 30000$ for example, the GPU would run out of memory and have issues with processing the matrix multiplication.
+
+Since this GPU should be much faster than the CPU, I will measure with teraflops instead of gigaflops.
+
+Here’s an example output from the GPU test with $N = 25000$:
+```
+31.25 TFLOP
+Matrix multiplication completed in 1.66 seconds
+18.87 TFLOPS
 ```
