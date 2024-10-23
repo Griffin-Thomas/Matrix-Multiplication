@@ -12,8 +12,8 @@ This project tests the performance of matrix multiplication in Python using both
 
 ## Prerequisites
 
-Make sure **Python 3.12.7** is installed on your system along with the necessary libraries depending on whether you're testing on the CPU or GPU.
-Oh, and have an **NVIDIA GPU with CUDA Toolkit 12.6** installed.
+- Make sure **Python 3.12.7** is installed on your system along with the necessary libraries depending on whether you're testing on the CPU or GPU.
+- Oh, and have an **NVIDIA GPU with CUDA Toolkit 12.6** installed.
 
 ### Install Dependencies
 
